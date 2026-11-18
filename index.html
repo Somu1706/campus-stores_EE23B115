@@ -9,6 +9,7 @@
       content="Work a shift at a fictional campus equipment desk in this interactive product engineering exercise."
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./domain.js"></script>
     <script defer src="./app.js"></script>
   </head>
   <body>
@@ -48,6 +49,13 @@
         <path d="M12 16h4" />
         <path d="M8 11h.01" />
         <path d="M8 16h.01" />
+      </symbol>
+      <symbol id="icon-scan-line" viewBox="0 0 24 24">
+        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+        <path d="M7 12h10" />
       </symbol>
       <symbol id="icon-book-open" viewBox="0 0 24 24">
         <path d="M12 7v14" />
@@ -114,7 +122,7 @@
         <aside class="shift">
           <div>
             <b data-shift-title></b>
-            <p data-shift></p>
+            <p data-shift id="shift-text" tabindex="-1"></p>
           </div>
           <button type="button" data-action="advance"></button>
         </aside>
@@ -127,10 +135,8 @@
           ></section>
         </div>
         <div class="statusbar">
-          <span role="status" aria-live="polite" data-status></span
-          ><button type="button" data-action="restart">
-            Restart sample shift
-          </button>
+          <span role="status" aria-live="polite" data-status></span>
+          <div class="restart" data-restart></div>
         </div>
       </div>
     </main>

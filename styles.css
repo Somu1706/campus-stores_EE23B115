@@ -40,9 +40,19 @@ body > main {
   --oktxt: light-dark(#25523d, #bedac8);
   background: var(--paper);
   color: var(--ink);
+  --warn: light-dark(#fbe6dd, #4a2c22);
+  --warntxt: light-dark(#8f3417, #f6bba5);
+  --info: light-dark(#e3edf4, #253a4a);
+  --infotxt: light-dark(#1f4964, #bfd8ea);
+  --err: light-dark(#a8381a, #f4ad95);
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
   font:
-    14px/1.48 "Inter",
-    "Arial",
+    14px/1.48 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
     sans-serif;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -63,8 +73,12 @@ body > main {
 }
 #campus-stores h1 {
   font:
-    600 clamp(24px, 4cqw, 33px)/1.13 "Archivo",
-    system-ui,
+    650 clamp(24px, 4cqw, 33px)/1.13 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
     sans-serif;
   letter-spacing: -0.05em;
 }
@@ -214,7 +228,7 @@ body > main {
   background: transparent;
   font-weight: 500;
 }
-#campus-stores nav button[aria-pressed="true"] {
+#campus-stores nav button[aria-current="page"] {
   background: var(--sel);
   color: var(--inv);
 }
@@ -323,6 +337,312 @@ body > main {
   font-size: 12px;
   background: transparent;
 }
+
+/* Lists, tags and unit IDs */
+#campus-stores ul.rows,
+#campus-stores ul.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#campus-stores .rowend,
+#campus-stores .lineend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#campus-stores .tag.warn {
+  background: var(--warn);
+  color: var(--warntxt);
+  font-weight: 600;
+}
+#campus-stores .tag.info {
+  background: var(--info);
+  color: var(--infotxt);
+}
+#campus-stores .uid {
+  font-family: var(--mono);
+  font-size: 0.94em;
+  font-weight: 600;
+}
+#campus-stores .late {
+  color: var(--warntxt);
+  font-weight: 600;
+}
+#campus-stores .slip.closed strong {
+  color: var(--quiet);
+}
+#campus-stores .empty {
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+  color: var(--quiet);
+}
+#campus-stores h3 small {
+  font-weight: 400;
+  font-size: 13px;
+}
+
+/* Fields and inline validation */
+#campus-stores .field {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  align-content: start;
+}
+#campus-stores .field > label,
+#campus-stores .field > .label {
+  font-size: 13px;
+  font-weight: 600;
+}
+#campus-stores .field em {
+  font-weight: 400;
+  font-style: normal;
+  color: var(--quiet);
+}
+#campus-stores .fieldmsg {
+  display: block;
+  font-size: 12px;
+  color: var(--quiet);
+}
+#campus-stores .fieldmsg.error {
+  color: var(--err);
+  font-weight: 600;
+}
+#campus-stores [aria-invalid="true"] {
+  border-color: var(--err);
+  box-shadow: 0 0 0 1px var(--err);
+}
+#campus-stores .form .field :is(select, input, textarea),
+#campus-stores .toolbar input {
+  width: 100%;
+}
+#campus-stores .form .check {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-weight: 500;
+  margin-top: 4px;
+  cursor: pointer;
+}
+#campus-stores .form .check input {
+  width: auto;
+  margin: 0;
+}
+#campus-stores .idinput {
+  font-family: var(--mono);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+#campus-stores .needs {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+#campus-stores .needs p + p {
+  margin-top: 3px;
+}
+#campus-stores .flash {
+  background: var(--ok);
+  color: var(--oktxt);
+  border-radius: 6px;
+  padding: 6px 9px;
+  margin: 6px 0 2px;
+  font-size: 13px;
+}
+#campus-stores .banner {
+  background: var(--info);
+  color: var(--infotxt);
+  border-radius: 6px;
+  padding: 8px 11px;
+  margin: 8px 0 4px;
+  font-size: 13px;
+}
+#campus-stores .banner.warn {
+  background: var(--warn);
+  color: var(--warntxt);
+}
+#campus-stores .banner.good {
+  background: var(--ok);
+  color: var(--oktxt);
+}
+
+/* Return lookup */
+#campus-stores .scan {
+  max-width: 560px;
+  margin: 2px 0 14px;
+}
+#campus-stores .scanrow {
+  display: flex;
+  gap: 8px;
+}
+#campus-stores .scanrow input {
+  flex: 1;
+  font-size: 18px;
+  padding: 9px 11px;
+}
+#campus-stores .scanrow button {
+  padding-inline: 16px;
+}
+#campus-stores :is(.confirm, .done, .notout, .subform) {
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 8px;
+  padding: 13px 14px;
+  margin: 12px 0 16px;
+}
+#campus-stores .confirm {
+  border-left-color: var(--sel);
+}
+#campus-stores .done {
+  border-left-color: var(--oktxt);
+}
+#campus-stores .notout {
+  border-left-color: var(--warntxt);
+}
+#campus-stores .subform {
+  background: var(--desk);
+  border-left-color: var(--sel);
+}
+#campus-stores .subform h3,
+#campus-stores .notout h3 {
+  margin-bottom: 4px;
+}
+#campus-stores :is(.done, .notout) > p + p,
+#campus-stores .done .kitsum {
+  margin-top: 6px;
+}
+#campus-stores .confirmhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+#campus-stores .facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 16px;
+  margin: 0 0 12px;
+}
+#campus-stores .facts div {
+  display: contents;
+}
+#campus-stores .facts dt {
+  color: var(--quiet);
+  font-size: 12.5px;
+  padding-top: 1px;
+}
+#campus-stores .facts dd {
+  margin: 0;
+}
+#campus-stores .confirmform {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+#campus-stores .confirmform .field {
+  min-width: 170px;
+}
+#campus-stores .formlead {
+  margin: 10px 0 2px;
+}
+#campus-stores .listblock {
+  margin-top: 20px;
+}
+#campus-stores .listblock h3 {
+  margin-bottom: 6px;
+}
+#campus-stores .muted {
+  color: var(--quiet);
+}
+#campus-stores .notout .muted {
+  margin-top: 8px;
+}
+
+/* Request kit */
+#campus-stores .kit {
+  margin-top: 18px;
+}
+#campus-stores .kithead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#campus-stores .progress {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+#campus-stores .lines .line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 10px;
+  border-top: 1px solid var(--line);
+  padding: 9px 0;
+}
+#campus-stores .line small {
+  display: block;
+}
+#campus-stores .line .subform {
+  grid-column: 1 / -1;
+  margin: 6px 0 2px;
+}
+
+/* Register toolbar */
+#campus-stores .toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+  margin: 10px 0 4px;
+}
+#campus-stores .toolbar .search {
+  flex: 1 1 260px;
+}
+#campus-stores .buttons.tight {
+  margin: 0;
+}
+#campus-stores .count {
+  font-size: 12px;
+  color: var(--quiet);
+  margin: 8px 0 4px;
+}
+
+/* Restart confirmation */
+#campus-stores .restart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+#campus-stores .restartq {
+  color: var(--ink);
+  font-weight: 600;
+}
+#campus-stores .statusbar .danger,
+#campus-stores .danger {
+  background: var(--err);
+  border-color: var(--err);
+  color: var(--inv);
+}
+#campus-stores [tabindex="-1"]:focus {
+  outline: none;
+}
+#campus-stores [tabindex="-1"]:focus-visible {
+  outline: 3px solid var(--mark);
+  outline-offset: 2px;
+}
+
 @container (max-width:650px) {
   #campus-stores .shell {
     grid-template-columns: minmax(0, 1fr);
@@ -359,13 +679,43 @@ body > main {
   #campus-stores .brandmark {
     display: none;
   }
-  #campus-stores .row {
+  #campus-stores .row,
+  #campus-stores .lines .line {
+    grid-template-columns: minmax(0, 1fr);
     gap: 5px;
+  }
+  #campus-stores .rowend,
+  #campus-stores .lineend {
+    justify-content: flex-start;
+  }
+  #campus-stores .facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  #campus-stores .facts dt {
+    padding-top: 6px;
+  }
+  #campus-stores .scanrow {
+    flex-wrap: wrap;
+  }
+  #campus-stores .scanrow button {
+    flex: 1 1 100%;
   }
 }
 @media (pointer: coarse) {
   #campus-stores button,
-  #campus-stores select {
+  #campus-stores select,
+  #campus-stores input:not([type="checkbox"]) {
     min-height: 44px;
   }
+}
+#campus-stores .idinput::placeholder {
+  text-transform: none;
+  letter-spacing: 0;
+}
+#campus-stores .fixrow {
+  padding: 0 0 10px;
+}
+#campus-stores .fixrow .subform {
+  margin: 0;
 }

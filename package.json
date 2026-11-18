@@ -1,0 +1,8 @@
+{
+  "name": "campus-stores",
+  "private": true,
+  "description": "Campus Stores media equipment desk work sample. No dependencies.",
+  "scripts": {
+    "test": "node --test tests/domain.test.js"
+  }
+}
